@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class CarMove_Vol2 : MonoBehaviour
 {
-    public HingeJoint FL, FR, RL, RR, Axle_L, Axle_R;
+    public HingeJoint  Axle_L, Axle_R;
+    public float MotorPower;
+    public Rigidbody FL, FR, RL, RR;
+    void Start()
+    {
+        FL.maxAngularVelocity = 120;
+        FR.maxAngularVelocity = 120;
+        RL.maxAngularVelocity = 120;
+        RR.maxAngularVelocity = 120;
+    }
 
     void Update()
     {
-        var Power = FL.motor;
-        Power.targetVelocity = 100 * Input.GetAxis("Vertical");
-        FL.motor = Power;
-        FR.motor = Power;
-        RL.motor = Power;
-        RR.motor = Power;
+        float Motor = MotorPower * Input.GetAxis("Vertical");
+        FL.AddTorque(Motor, 0, 0, ForceMode.Force);
+        FR.AddTorque(Motor, 0, 0, ForceMode.Force);
+        RL.AddTorque(Motor, 0, 0, ForceMode.Force);
+        RR.AddTorque(Motor, 0, 0, ForceMode.Force);
 
         var Angle = Axle_L.spring;
         Angle.targetPosition = 30 * Input.GetAxis("Horizontal");
