@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMove : MonoBehaviour
+public class CarMove1 : MonoBehaviour
 {
     public WheelCollider FL, FR, RL, RR;    //WheelCollider‚Ìæ“¾
     public float maxPower;  //Å‚o—Íƒgƒ‹ƒN
