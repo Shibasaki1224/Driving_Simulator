@@ -10,20 +10,24 @@ public class CarMove : MonoBehaviour
     public float breake;    //ブレーキの力
     string ShiftLever;      //シフトレバー制作中･･･
 
+    public int input;
+
     void FixedUpdate()
     {
-        RL.motorTorque = maxPower * (Input.GetAxis("Vertical") + 1);   //左リアタイヤのモータートルク
-        RR.motorTorque = maxPower * (Input.GetAxis("Vertical") + 1);   //右リアタイヤのモータートルク
+        FL.motorTorque = maxPower * (Input.GetAxis("Vertical") + input);   //左リアタイヤのモータートルク
+        FR.motorTorque = maxPower * (Input.GetAxis("Vertical") + input);   //右リアタイヤのモータートルク
+        RL.motorTorque = maxPower * (Input.GetAxis("Vertical") + input);   //左リアタイヤのモータートルク
+        RR.motorTorque = maxPower * (Input.GetAxis("Vertical") + input);   //右リアタイヤのモータートルク
 
         FL.steerAngle = angle * Input.GetAxis("Horizontal");   //左フロントタイヤの角度
         FR.steerAngle = angle * Input.GetAxis("Horizontal");   //右フロントタイヤの角度
 
-        if ((Input.GetAxis("Break") + 1) > 0)       //ブレーキシステム
+        if ((Input.GetAxis("Break") + input) > 0)       //ブレーキシステム
         {
-            FL.brakeTorque = breake * (Input.GetAxis("Break") + 1);
-            FR.brakeTorque = breake * (Input.GetAxis("Break") + 1);
-            RL.brakeTorque = breake * (Input.GetAxis("Break") + 1);
-            RR.brakeTorque = breake * (Input.GetAxis("Break") + 1);
+            FL.brakeTorque = breake * (Input.GetAxis("Break") + input);
+            FR.brakeTorque = breake * (Input.GetAxis("Break") + input);
+            RL.brakeTorque = breake * (Input.GetAxis("Break") + input);
+            RR.brakeTorque = breake * (Input.GetAxis("Break") + input);
         }
         else           //ブレーキを踏んでいないときの挙動
         {
