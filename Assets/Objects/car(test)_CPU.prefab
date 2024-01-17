@@ -467,7 +467,6 @@ GameObject:
   - component: {fileID: 6592612496229827336}
   - component: {fileID: 6592612496229827340}
   - component: {fileID: 6592612496229827339}
-  - component: {fileID: 8991922375414808857}
   m_Layer: 0
   m_Name: car_body
   m_TagString: Untagged
@@ -540,25 +539,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8991922375414808857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6592612496229827335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71128092aa5d8214bba55bd8e09ba250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FL: {fileID: 6592612496224270392}
-  FR: {fileID: 6592612494802166311}
-  RL: {fileID: 6592612495830559764}
-  RR: {fileID: 6592612495796283462}
-  maxPower: 350
-  angle: 30
-  input: 0
 --- !u!1 &6592612496538887344
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +550,7 @@ GameObject:
   - component: {fileID: 6592612496538887347}
   - component: {fileID: 6592612496538887346}
   - component: {fileID: 6592612496538887348}
+  - component: {fileID: 1879944558}
   m_Layer: 0
   m_Name: car(test)_CPU
   m_TagString: Car
@@ -626,3 +607,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.5, z: 4.75}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1879944558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592612496538887344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71128092aa5d8214bba55bd8e09ba250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FL: {fileID: 6592612496224270392}
+  FR: {fileID: 6592612494802166311}
+  RL: {fileID: 6592612495830559764}
+  RR: {fileID: 6592612495796283462}
+  maxPower: 50
+  angle: 0
+  Breake: 0
+  lr: {fileID: 0}
+  lr_Next: {fileID: 0}
