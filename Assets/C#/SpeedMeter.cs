@@ -10,7 +10,7 @@ public class SpeedMeter : MonoBehaviour
     public Text txt;
     Text MeterText;
     Rigidbody rb;
-    float speed;
+    public static float speed;
 
     Vector3 posi, _posi, Distance;
     float Meter;
@@ -18,13 +18,13 @@ public class SpeedMeter : MonoBehaviour
     void FixedUpdate()
     {
         MeterText = txt.GetComponent<Text>();       //TextUIを取得
-        if(System==true)
+        if(System==true)    //Rigidbodyで敬さん
         {
             rb = GetComponent<Rigidbody>();             //Rigidodyの取得
             speed = rb.velocity.magnitude * 3.6f;       //速度[km/h] = 速度[m/s] × 3.6
             MeterText.text = ((int)speed) + " km/h";    //TextUIに表示
         }
-        else
+        else                //座標で敬さん
         {
             posi = transform.position;  //オブジェクトの[現在の位置]の取得
             Distance = posi - _posi;    //[現在の位置] - [過去の位置]の計算

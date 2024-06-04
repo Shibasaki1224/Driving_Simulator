@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CarMove_CPU : MonoBehaviour
 {
-    [SerializeField] CinemachineDollyCart dollyCart = null;
+    public CinemachineDollyCart dollyCart = null;
     public GameObject sensor;
     Vector3 distance;
 
@@ -19,7 +19,6 @@ public class CarMove_CPU : MonoBehaviour
         {
             if (distance.z > 0)
             {
-                Debug.Log("abcdefg");
                 distance.z -= 0.25f;
             }
         }
@@ -27,22 +26,18 @@ public class CarMove_CPU : MonoBehaviour
         {
             if (distance.z < 17)
             {
-                Debug.Log("1234567");
                 distance.z += 0.05f;
             }
         }
         dollyCart.m_Speed = distance.z - 3;
         sensor.transform.localScale = new Vector3(1, 1, distance.z);
-    }
-    void OnTriggerEnter(Collider collision)
-    {
 
-        if (collision.gameObject.tag == "Rail")
+        if (collision.gameObject.tag == "Rail" && dollyCart.m_Position >= dollyCart.m_Path.PathLength)
         {
-            int x = (int)Random.Range(0, 3);
-            Debug.Log(x);
+            int x = collision.GetComponent<Rail_Select>().Rail.Length;
+            int y = (int)Random.Range(0, x);
             dollyCart.m_Position = 0;
-            dollyCart.m_Path = collision.GetComponent<Rail_Select>().Rail[x];
+            dollyCart.m_Path = collision.GetComponent<Rail_Select>().Rail[y];
         }
     }
 }
