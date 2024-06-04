@@ -8,7 +8,7 @@ public class CPU_CarMove : MonoBehaviour
     public float maxPower, angle, Breake;
 
     public LineRenderer lr, lr_Next;
-    var posi;
+    Vector3[] posi;
     int i = 0;
 
     void Update()
@@ -19,7 +19,7 @@ public class CPU_CarMove : MonoBehaviour
         Debug.Log(posi[0]);
         Vector3 to = posi[i] - transform.position;
         angle = Vector3.SignedAngle(transform.forward, to, Vector3.up);
-
+        Debug.Log(posi);
         if (cnt < i)
         {
             lr = lr_Next;
