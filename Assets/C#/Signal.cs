@@ -16,12 +16,30 @@ public class Signal : MonoBehaviour
             Light_Y.SetActive(false);
             Light_R.SetActive(false);
             this.tag = "Blue";
-            if(time < 600)
+            Walk_Light_R.SetActive(true);
+            Walk_Light_B.SetActive(false);
+        }
+        else if (time >= 1000 && time < 1150)
+        {
+            Light_B.SetActive(false);
+            Light_Y.SetActive(true);
+            Light_R.SetActive(false);
+            this.tag = "Yellow";
+            Walk_Light_R.SetActive(true);
+            Walk_Light_B.SetActive(false);
+        }
+        else if (time >= 1150 && time < 2600)
+        {
+            Light_B.SetActive(false);
+            Light_Y.SetActive(false);
+            Light_R.SetActive(true);
+            this.tag = "Red";
+            if (time >= 1300 && time < 2000)
             {
                 Walk_Light_B.SetActive(true);
                 Walk_Light_R.SetActive(false);
             }
-            if(time >= 600 && time < 850)
+            else if (time >= 2000 && time < 2250)
             {
                 if (time % 40 == 0)
                 {
@@ -32,29 +50,11 @@ public class Signal : MonoBehaviour
                     Walk_Light_B.SetActive(true);
                 }
             }
-            else if(time >= 850)
+            else
             {
                 Walk_Light_R.SetActive(true);
                 Walk_Light_B.SetActive(false);
             }
-        }
-        else if (time >= 1000 && time < 1150)
-        {
-            Light_B.SetActive(false);
-            Light_Y.SetActive(true);
-            Light_R.SetActive(false);
-            Walk_Light_R.SetActive(true);
-            Walk_Light_B.SetActive(false);
-            this.tag = "Yellow";
-        }
-        else if (time >= 1150 && time < 2600)
-        {
-            Light_B.SetActive(false);
-            Light_Y.SetActive(false);
-            Light_R.SetActive(true);
-            Walk_Light_R.SetActive(true);
-            Walk_Light_B.SetActive(false);
-            this.tag = "Red";
         }
         else
             time = 0;

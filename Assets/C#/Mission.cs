@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class Mission : MonoBehaviour
 {
-        float time;
+    public GameObject StopLine, Player, SigA, SigB;
     public Text txt;
+    float dis;
+
+    bool LineStop;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,23 +19,35 @@ public class Mission : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        SignalStopping();
-    }
-
-    //M†’â~Mission
-    void SignalStopping()
-    {
-        //gameObject StopLine;
-
-        txt.GetComponent<Text>().text = "Mission\nM†’â~";
-        if (Input.GetAxis("Break") > 0 && SpeedMeter.speed <= 0)
+        if (LineStop)
         {
-            time += Time.deltaTime;
+            if (Player.GetComponent<SpeedMeter>().speed > 0.3f)
+            {
+                txt.GetComponent<Text>().text = "Mission\nM†’â~";
+                dis = Vector3.Distance(StopLine.transform.position, Player.gameObject.transform.position);
+                txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis);
+            }
+            else
+            {
+                if (dis > 0.5f && 4 >= dis)
+                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis + "\n—Ç‚µ");
+                else
+                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis + "\nˆ«‚µ");
+                LineStop = false;
+            }
         }
         else
         {
-            txt.GetComponent<Text>().text = "Mission[M†’â~]\n§“®‹——£:" + ((float)time);
-
+            //txt.GetComponent<Text>().text = "Mission";
+        }
+    }
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject == Player)
+        {
+            LineStop = true;
+            SigA.GetComponent<Signal>().time = 1000;
+            SigB.GetComponent<Signal>().time = 1000;
         }
     }
 }
