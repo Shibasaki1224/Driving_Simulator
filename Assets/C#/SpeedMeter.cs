@@ -10,7 +10,7 @@ public class SpeedMeter : MonoBehaviour
     public Text txt;
     Text MeterText;
     Rigidbody rb;
-    public static float speed;
+    public float speed;
 
     Vector3 posi, _posi, Distance;
     float Meter;
