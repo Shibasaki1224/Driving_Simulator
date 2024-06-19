@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class Mission : MonoBehaviour
 {
-    public GameObject StopLine, Player, SigA, SigB;
+    public GameObject StopLine, Player, SigA, SigB, Line;
     public Text txt;
     float dis;
+    var cubeRenderer = Line.GetComponent<Renderer>();
 
     bool LineStop;
     // Start is called before the first frame update
     void Start()
     {
-
+        Line.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,18 +22,22 @@ public class Mission : MonoBehaviour
     {
         if (LineStop)
         {
-            if (Player.GetComponent<SpeedMeter>().speed > 0.3f)
+            Line.SetActive(true);
+            if (Player.GetComponent<SpeedMeter>().speed > 0.3f && dis >= 0)
             {
-                txt.GetComponent<Text>().text = "Mission\nM†’â~";
-                dis = Vector3.Distance(StopLine.transform.position, Player.gameObject.transform.position);
-                txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis);
+                cubeRenderer.material.SetFloat("_TopColorAmount", 0.0f);
+                dis = Mathf.RoundToInt(Vector3.Distance(StopLine.transform.position, Player.gameObject.transform.position) * 10);
+                dis = dis / 10 - 2.5f;
+                txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis)+"m";
             }
             else
             {
-                if (dis > 0.5f && 4 >= dis)
-                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis + "\n—Ç‚µ");
+                if (0 < dis && dis <= 4)
+                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis) + "m\n—Ç‚µ";
+                else if (dis < 0)
+                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü’´‚¦‚Ü‚µ‚½‚ªHH";
                 else
-                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis + "\nˆ«‚µ");
+                    txt.GetComponent<Text>().text = "Mission[M†’â~]\n’â~ü‚Ü‚Å‚Ì‹——£:" + ((float)dis) + "m\nˆ«‚µ";
                 LineStop = false;
             }
         }
