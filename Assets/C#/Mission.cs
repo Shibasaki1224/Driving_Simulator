@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Mission : MonoBehaviour
 {
-    public GameObject StopLine, Player, SigA, SigB, Line;
+    public GameObject StopLine, Player, SigA, SigB, Line,Line2;
     public Text txt;
     float dis;
 
@@ -19,12 +19,14 @@ public class Mission : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float speed = Player.GetComponent<SpeedMeter>().speed;
         var cubeRenderer = Line.GetComponent<Renderer>();
-        cubeRenderer.material.SetFloat("_TopColorAmount", Player.GetComponent<SpeedMeter>().speed / 80);
+        cubeRenderer.material.SetFloat("_TopColorAmount", speed / 80);
+        Line2.GetComponent<Renderer>().material.color = new Color(speed/80, speed / 80, speed / 80, 255);
         if (LineStop)
         {
             //Line.SetActive(true);
-            if (Player.GetComponent<SpeedMeter>().speed > 0.3f && dis >= 0)
+            if (speed > 0.3f && dis >= 0)
             {
                 dis = Mathf.RoundToInt(Vector3.Distance(StopLine.transform.position, Player.gameObject.transform.position) * 10);
                 dis = dis / 10 - 2.5f;
