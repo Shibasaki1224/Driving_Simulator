@@ -8,24 +8,24 @@ public class Mission : MonoBehaviour
     public GameObject StopLine, Player, SigA, SigB, Line;
     public Text txt;
     float dis;
-    var cubeRenderer = Line.GetComponent<Renderer>();
 
     bool LineStop;
     // Start is called before the first frame update
     void Start()
     {
-        Line.SetActive(false);
+        //Line.SetActive(false);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        var cubeRenderer = Line.GetComponent<Renderer>();
+        cubeRenderer.material.SetFloat("_TopColorAmount", Player.GetComponent<SpeedMeter>().speed / 80);
         if (LineStop)
         {
-            Line.SetActive(true);
+            //Line.SetActive(true);
             if (Player.GetComponent<SpeedMeter>().speed > 0.3f && dis >= 0)
             {
-                cubeRenderer.material.SetFloat("_TopColorAmount", 0.0f);
                 dis = Mathf.RoundToInt(Vector3.Distance(StopLine.transform.position, Player.gameObject.transform.position) * 10);
                 dis = dis / 10 - 2.5f;
                 txt.GetComponent<Text>().text = "Mission[êMçÜí‚é~]\ní‚é~ê¸Ç‹Ç≈ÇÃãóó£:" + ((float)dis)+"m";
